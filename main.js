@@ -186,16 +186,18 @@ const verCarrito = () => {
     });
     const total = carrito.reduce((acumulador, producto) => acumulador + producto.precio, 0);
     const totalConIVA = IVA * total; // Calculamos el total con IVA
-    mensaje += `TOTAL                  $${totalConIVA}`; // Usamos totalConIVA en lugar de total
-    mensaje += `¿Desea realizar la compra? (si/no)`;
+    mensaje += `TOTAL CON IVA : $${totalConIVA}`; // Usamos totalConIVA en lugar de total
+    mensaje += `  ¿Desea realizar la compra? (si/no)`;
     const respuesta = prompt(mensaje);
     if (respuesta.toLowerCase() === 'si') {
+        const nombreComprador = prompt('Ingrese su nombre')
+        const direccionComprador = prompt('Ingrese una direccion para recibir la compra')
         historial.push({
             numero: numeroCompra,
-            nombre: prompt('Ingrese su nombre'),
-            direccion: prompt('Ingrese la dirección a donde llegará el producto')
+            nombre: nombreComprador,
+            direccion: direccionComprador
         });
-        alert('Felicitaciones, tu compra fue realizada con éxito! \n Nº ' + numeroCompra + '\n guarda el número para recibir el producto');
+        alert('Felicitaciones ' + nombreComprador + ', tu compra fue realizada con éxito! \n Nº ' + numeroCompra + '\n Guarda el número para recibir el producto en ' + direccionComprador);
         carrito.splice(0, carrito.length); // Limpiamos el carrito después de la compra
     }
 }
